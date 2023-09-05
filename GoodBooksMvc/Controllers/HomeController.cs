@@ -15,6 +15,19 @@ namespace GoodBooksMvc.Controllers
 
         public IActionResult Index()
         {
+            if (!Request.Cookies.ContainsKey("PageVisitCounter"))
+            {
+                Response.Cookies.Append("PageVisitCounter", "1");
+            }
+            else
+            {
+                if (int.TryParse(Request.Cookies["PageVisitCounter"], out int pageCount))
+                {
+                    pageCount++;
+                    Response.Cookies.Append("PageVisitCounter", pageCount.ToString());
+                    ViewData["visitCount"] = pageCount;
+                }
+            }
             return View();
         }
 

@@ -1,0 +1,14 @@
+﻿@model IEnumerable<Book>
+
+
+<title>Books List</title>
+
+<ul class="list-unstyled">
+    @foreach (var book in Model)
+    {
+        <li>
+            @book.Title: @book.Description
+            
+        </li>
+    }
+</ul>
